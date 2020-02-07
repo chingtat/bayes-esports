@@ -1,0 +1,31 @@
+version: '3'
+services:
+  rabbitmq:
+    image: 'rabbitmq:3-management'
+    ports:
+      - "4369:4369"
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"
+      - "35197:35197"
+    volumes:
+      - ./data:/var/lib/rabbitmq
+      - ./data/logs:/var/log/rabbitmq
+    hostname: rabbit
+
+  task-init:
+    build:
+      context: .
+      dockerfile: Dockerfile-init.dev
+    volumes:
+      - ./logs:/usr/src/app/logs
+      - ./config:/usr/src/app/config
+
+  task-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile-worker.dev
+    restart: always
+    volumes:
+      - ./logs:/usr/src/app/logs
+      - ./config:/usr/src/app/config

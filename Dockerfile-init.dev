@@ -1,0 +1,17 @@
+FROM python:3.6-buster
+
+WORKDIR /usr/src/app
+
+RUN mkdir -p ./logs
+RUN mkdir -p ./config
+COPY init.py ./
+COPY code_challenge_data1.csv   ./
+COPY code_challenge_data2.csv   ./
+COPY code_challenge_base_predictor.py   ./
+COPY code_challenge_model.p   ./
+COPY requirements.txt   ./
+COPY worker.py   ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD [ "python", "./init.py", "--host=rabbitmq"]

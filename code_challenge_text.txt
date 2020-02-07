@@ -1,0 +1,14 @@
+For the code challenge we would like you to implement the following scenario in Python:
+
+Data is being fed via RabbitMQ to a predictor. The predictor returns the probability that the data belongs to class 1. This probability is being sent back to the queue. The predictor is able to accept values from two different data sources. The sources are switched via a parameter. The design of the switch is up to you.
+
+In the attached zip file you will find a serialized model and two sets of data, representing the two data sources. The model is a logistic regressor and was generated using sklearn 0.20.0. Its input is 3-dimensional numpy array of [feature1, feature2, feature3]. No further transformations need to be done on the data. We added a python file that takes care of the predict() function for you, but you don't have to use it if you have a better idea.
+
+Goals:
+- Run RabbitMQ in a docker container (preferably with a docker-compose setup)
+- Publish sources data to RabbitMQ
+- Consume messages from RabbitMQ in the predictor
+- Run predictions based on the data
+- Switch between two data sources
+- Bonus: logging
+- Bonus: make it robust

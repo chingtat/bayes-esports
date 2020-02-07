@@ -7,3 +7,4 @@
 - run app from run.bash (need docker-compose)
 - see logs in ./logs/worker.log
 - change queue in ./config/config.ini (queue_in_1 or queue_in_2) 
+- worker restarts when fails with exception (errors look at logs)
